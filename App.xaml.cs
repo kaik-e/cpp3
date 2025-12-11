@@ -30,7 +30,8 @@ namespace ForgeMacro
                 Log.Information("ForgeMacro started");
 
                 // Show main window
-                var mainWindow = new MainWindow();
+                var viewModel = ServiceProvider.GetRequiredService<MainWindowViewModel>();
+                var mainWindow = new MainWindow(viewModel);
                 mainWindow.Show();
             }
             catch (Exception ex)
