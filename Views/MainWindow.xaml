@@ -24,8 +24,8 @@
                 <TextBlock Text="⛏️ ForgeMacro" FontSize="20" FontWeight="Bold" Margin="0,0,0,30" Foreground="{StaticResource AccentBrush}" />
 
                 <!-- Navigation Buttons -->
-                <StackPanel Spacing="10">
-                    <Button Content="🏠 Dashboard" 
+                <StackPanel>
+                    <Button Content="🏠 Dashboard" Margin="0,0,0,10" 
                             Style="{StaticResource PrimaryButtonStyle}"
                             Click="NavigateToDashboard"
                             Tag="Dashboard" />
@@ -33,7 +33,7 @@
                     <Button Content="⚙️ Settings" 
                             Style="{StaticResource PrimaryButtonStyle}"
                             Click="NavigateToSettings"
-                            Tag="Settings" />
+                            Tag="Settings" Margin="0,0,0,10" />
                     
                     <Button Content="🤖 Detection" 
                             Style="{StaticResource PrimaryButtonStyle}"
@@ -43,7 +43,7 @@
                     <Button Content="📊 Statistics" 
                             Style="{StaticResource PrimaryButtonStyle}"
                             Click="NavigateToStatistics"
-                            Tag="Statistics" />
+                            Tag="Statistics" Margin="0,0,0,10" />
                     
                     <Button Content="📝 Logs" 
                             Style="{StaticResource PrimaryButtonStyle}"
@@ -56,8 +56,8 @@
 
                 <!-- Status Section -->
                 <TextBlock Text="Status" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10" />
-                <StackPanel Spacing="8">
-                    <StackPanel Orientation="Horizontal" Spacing="8">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                         <Ellipse Width="10" Height="10" Fill="{StaticResource WarningColor}" />
                         <TextBlock Text="Idle" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" />
                     </StackPanel>
@@ -83,11 +83,11 @@
 
                     <TextBlock x:Name="PageTitle" Text="Dashboard" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
 
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="15" VerticalAlignment="Center">
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,15">
                         <Button Content="▶️ Start" 
                                 Style="{StaticResource PrimaryButtonStyle}"
                                 Click="StartMacro"
-                                Padding="20,8" />
+                                Padding="20,8" Margin="0,0,15,0" />
                         
                         <Button Content="⏹️ Stop" 
                                 Style="{StaticResource PrimaryButtonStyle}"

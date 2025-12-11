@@ -17,7 +17,7 @@
             <Border Grid.Row="0" Background="{StaticResource PrimaryBrush}" 
                     BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" 
                     CornerRadius="12" Padding="20" Margin="0,0,0,20">
-                <StackPanel Spacing="15">
+                <StackPanel>
                     <TextBlock Text="📈 Session Statistics" FontSize="14" FontWeight="Bold" />
                     
                     <Grid>
@@ -31,32 +31,32 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Column="0" Grid.Row="0" Spacing="5" Margin="0,0,20,15">
+                        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,20,15">
                             <TextBlock Text="Total Ores Mined" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
                             <TextBlock Text="1,234" FontSize="24" FontWeight="Bold" Foreground="{StaticResource AccentBrush}" />
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" Grid.Row="0" Spacing="5" Margin="0,0,0,15">
+                        <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,0,0,15">
                             <TextBlock Text="Avg Ores/Hour" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
                             <TextBlock Text="308" FontSize="24" FontWeight="Bold" Foreground="{StaticResource SuccessColor}" />
                         </StackPanel>
 
-                        <StackPanel Grid.Column="0" Grid.Row="1" Spacing="5" Margin="0,0,20,15">
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,20,15">
                             <TextBlock Text="Rocks Detected" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
                             <TextBlock Text="567" FontSize="24" FontWeight="Bold" Foreground="{StaticResource WarningColor}" />
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" Grid.Row="1" Spacing="5" Margin="0,0,0,15">
+                        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,15">
                             <TextBlock Text="Detection Accuracy" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
                             <TextBlock Text="94.2%" FontSize="24" FontWeight="Bold" Foreground="{StaticResource SuccessColor}" />
                         </StackPanel>
 
-                        <StackPanel Grid.Column="0" Grid.Row="2" Spacing="5">
+                        <StackPanel Grid.Column="0" Grid.Row="2">
                             <TextBlock Text="Session Duration" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
                             <TextBlock Text="4h 2m 15s" FontSize="24" FontWeight="Bold" Foreground="{StaticResource DangerColor}" />
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" Grid.Row="2" Spacing="5">
+                        <StackPanel Grid.Column="1" Grid.Row="2">
                             <TextBlock Text="Avg Detection Time" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
                             <TextBlock Text="45ms" FontSize="24" FontWeight="Bold" Foreground="{StaticResource AccentBrush}" />
                         </StackPanel>
@@ -68,7 +68,7 @@
             <Border Grid.Row="1" Background="{StaticResource PrimaryBrush}" 
                     BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" 
                     CornerRadius="12" Padding="20" Margin="0,0,0,20">
-                <StackPanel Spacing="15">
+                <StackPanel>
                     <TextBlock Text="⛏️ Ore Breakdown" FontSize="14" FontWeight="Bold" />
                     
                     <ListBox Background="Transparent" BorderThickness="0" 
@@ -117,10 +117,10 @@
             <Border Grid.Row="2" Background="{StaticResource PrimaryBrush}" 
                     BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" 
                     CornerRadius="12" Padding="20">
-                <StackPanel Spacing="10">
+                <StackPanel>
                     <TextBlock Text="📊 Actions" FontSize="14" FontWeight="Bold" Margin="0,0,0,10" />
                     
-                    <StackPanel Orientation="Horizontal" Spacing="10">
+                    <StackPanel Orientation="Horizontal">
                         <Button Content="📥 Export CSV" Style="{StaticResource PrimaryButtonStyle}" />
                         <Button Content="📊 Export JSON" Style="{StaticResource PrimaryButtonStyle}" />
                         <Button Content="🔄 Reset Stats" Style="{StaticResource PrimaryButtonStyle}" Background="{StaticResource DangerColor}" />
