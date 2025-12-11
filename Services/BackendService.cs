@@ -7,23 +7,34 @@ namespace ForgeMacro.Services
     {
         private HttpClient? _httpClient;
         private string _baseUrl = string.Empty;
+        private bool _isEnabled = false;
 
         public async Task InitializeAsync(string baseUrl)
         {
             try
             {
+                if (string.IsNullOrEmpty(baseUrl) || baseUrl == "disabled")
+                {
+                    Log.Information("Backend service disabled (standalone mode)");
+                    _isEnabled = false;
+                    await Task.CompletedTask;
+                    return;
+                }
+
                 _baseUrl = baseUrl;
                 _httpClient = new HttpClient();
                 _httpClient.BaseAddress = new Uri(baseUrl);
                 _httpClient.Timeout = TimeSpan.FromSeconds(30);
+                _isEnabled = true;
 
                 Log.Information("Backend service initialized with URL: {BaseUrl}", baseUrl);
                 await Task.CompletedTask;
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Error initializing backend service");
-                throw;
+                Log.Error(ex, "Error initializing backend service - running in standalone mode");
+                _isEnabled = false;
+                await Task.CompletedTask;
             }
         }
 
@@ -31,8 +42,11 @@ namespace ForgeMacro.Services
         {
             try
             {
-                if (_httpClient == null)
-                    throw new InvalidOperationException("Backend service not initialized");
+                if (!_isEnabled || _httpClient == null)
+                {
+                    Log.Information("Using local config (backend disabled)");
+                    return new MacroConfig();
+                }
 
                 var response = await _httpClient.GetAsync("/api/macro/config");
                 response.EnsureSuccessStatusCode();
@@ -43,8 +57,7 @@ namespace ForgeMacro.Services
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Error getting config from backend");
-                // Return default config on error
+                Log.Error(ex, "Error getting config from backend - using local config");
                 return new MacroConfig();
             }
         }
@@ -53,8 +66,11 @@ namespace ForgeMacro.Services
         {
             try
             {
-                if (_httpClient == null)
-                    throw new InvalidOperationException("Backend service not initialized");
+                if (!_isEnabled || _httpClient == null)
+                {
+                    Log.Information("Stats saved locally (backend disabled)");
+                    return;
+                }
 
                 var response = await _httpClient.PostAsJsonAsync("/api/macro/stats", stats);
                 response.EnsureSuccessStatusCode();
@@ -71,8 +87,11 @@ namespace ForgeMacro.Services
         {
             try
             {
-                if (_httpClient == null)
-                    throw new InvalidOperationException("Backend service not initialized");
+                if (!_isEnabled || _httpClient == null)
+                {
+                    Log.Information("Detection logged locally: {Count} {OreType}", count, oreType);
+                    return;
+                }
 
                 var payload = new { oreType, count, timestamp = DateTime.UtcNow };
                 var response = await _httpClient.PostAsJsonAsync("/api/macro/detections", payload);

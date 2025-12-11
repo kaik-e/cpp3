@@ -35,6 +35,7 @@ namespace ForgeMacro
             services.AddSingleton<IOcrService, OcrService>();
             services.AddSingleton<IObjectDetectionService, ObjectDetectionService>();
             services.AddSingleton<IInputSimulationService, InputSimulationService>();
+            // Backend service is optional - only used if configured
             services.AddSingleton<IBackendService, BackendService>();
             services.AddSingleton<IMacroEngineService, MacroEngineService>();
 
