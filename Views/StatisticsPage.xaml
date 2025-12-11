@@ -5,7 +5,7 @@
       Background="{StaticResource SecondaryBrush}"
       Foreground="{StaticResource TextPrimaryBrush}">
     
-    <ScrollViewer>
+    <ScrollViewer Background="{StaticResource SecondaryBrush}">
         <Grid Padding="30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

@@ -5,7 +5,7 @@
       Background="{StaticResource SecondaryBrush}"
       Foreground="{StaticResource TextPrimaryBrush}">
     
-    <Grid Padding="30">
+    <Grid Background="{StaticResource SecondaryBrush}" Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
