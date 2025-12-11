@@ -34,7 +34,7 @@ namespace ForgeMacro.Services
                 if (_httpClient == null)
                     throw new InvalidOperationException("Backend service not initialized");
 
-                var response = await _httpClient.GetAsync("/api/config");
+                var response = await _httpClient.GetAsync("/api/macro/config");
                 response.EnsureSuccessStatusCode();
 
                 var config = await response.Content.ReadAsAsync<MacroConfig>();
@@ -56,7 +56,7 @@ namespace ForgeMacro.Services
                 if (_httpClient == null)
                     throw new InvalidOperationException("Backend service not initialized");
 
-                var response = await _httpClient.PostAsJsonAsync("/api/stats", stats);
+                var response = await _httpClient.PostAsJsonAsync("/api/macro/stats", stats);
                 response.EnsureSuccessStatusCode();
 
                 Log.Information("Uploaded stats to backend");
@@ -75,7 +75,7 @@ namespace ForgeMacro.Services
                     throw new InvalidOperationException("Backend service not initialized");
 
                 var payload = new { oreType, count, timestamp = DateTime.UtcNow };
-                var response = await _httpClient.PostAsJsonAsync("/api/detections", payload);
+                var response = await _httpClient.PostAsJsonAsync("/api/macro/detections", payload);
                 response.EnsureSuccessStatusCode();
 
                 Log.Information("Reported {Count} {OreType} detections to backend", count, oreType);
@@ -93,7 +93,7 @@ namespace ForgeMacro.Services
                 if (_httpClient == null)
                     throw new InvalidOperationException("Backend service not initialized");
 
-                var response = await _httpClient.GetAsync("/api/auth/check");
+                var response = await _httpClient.GetAsync("/api/macro/auth/check");
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
@@ -110,7 +110,7 @@ namespace ForgeMacro.Services
                 if (_httpClient == null)
                     throw new InvalidOperationException("Backend service not initialized");
 
-                var response = await _httpClient.GetAsync($"/api/models/{modelName}");
+                var response = await _httpClient.GetAsync($"/api/macro/models/{modelName}");
                 response.EnsureSuccessStatusCode();
 
                 var modelsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "models");
