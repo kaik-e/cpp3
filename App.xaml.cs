@@ -7,25 +7,38 @@ namespace ForgeMacro
 {
     public partial class App : Application
     {
-        public static IServiceProvider ServiceProvider { get; private set; }
+        public static IServiceProvider ServiceProvider { get; private set; } = null!;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            // Configure logging
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .WriteTo.Console()
-                .WriteTo.File("logs/forgego-.txt", rollingInterval: RollingInterval.Day)
-                .CreateLogger();
+            try
+            {
+                // Configure logging
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Information()
+                    .WriteTo.Console()
+                    .WriteTo.File("logs/forgego-.txt", rollingInterval: RollingInterval.Day)
+                    .CreateLogger();
 
-            // Setup dependency injection
-            var services = new ServiceCollection();
-            ConfigureServices(services);
-            ServiceProvider = services.BuildServiceProvider();
+                // Setup dependency injection
+                var services = new ServiceCollection();
+                ConfigureServices(services);
+                ServiceProvider = services.BuildServiceProvider();
 
-            Log.Information("ForgeMacro started");
+                Log.Information("ForgeMacro started");
+
+                // Show main window
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error starting application: {ex.Message}\n\n{ex.StackTrace}", "ForgeMacro Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Log.Error(ex, "Error starting application");
+                Shutdown();
+            }
         }
 
         private void ConfigureServices(IServiceCollection services)
