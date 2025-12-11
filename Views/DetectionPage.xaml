@@ -19,9 +19,9 @@
                 <TextBlock Text="🎯 Real-time Detection" FontSize="14" FontWeight="Bold" />
                 
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="📸 Capture & Analyze" Style="{StaticResource PrimaryButtonStyle}" />
-                    <Button Content="🎬 Start Live Feed" Style="{StaticResource PrimaryButtonStyle}" />
-                    <Button Content="⏹️ Stop" Style="{StaticResource PrimaryButtonStyle}" Background="{StaticResource DangerColor}" />
+                    <Button Content="Capture &amp; Analyze" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,10,0" />
+                    <Button Content="Start Live Feed" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,10,0" />
+                    <Button Content="Stop" Style="{StaticResource PrimaryButtonStyle}" Background="{StaticResource DangerColor}" />
                 </StackPanel>
             </StackPanel>
         </Border>
