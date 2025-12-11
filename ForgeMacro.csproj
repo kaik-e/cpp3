@@ -14,10 +14,11 @@
     
     <!-- Single-file deployment settings -->
     <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>true</PublishTrimmed>
+    <PublishTrimmed>false</PublishTrimmed>
     <PublishReadyToRun>true</PublishReadyToRun>
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,7 +45,7 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
     
     <!-- JSON Serialization -->
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
     
     <!-- Reactive Extensions for smooth UI -->
     <PackageReference Include="System.Reactive" Version="6.0.0" />
