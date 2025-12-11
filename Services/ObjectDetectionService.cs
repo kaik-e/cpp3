@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.IO;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using OpenCvSharp;
@@ -47,22 +48,27 @@ namespace ForgeMacro.Services
 
                 var results = new List<DetectionResult>();
 
-                // Convert bitmap to Mat
-                using (var mat = OpenCvSharp.Extensions.BitmapConverter.ToMat(image))
+                // Convert bitmap to Mat via memory stream
+                using (var ms = new MemoryStream())
                 {
-                    // Preprocess image
-                    var inputTensor = PreprocessImage(mat);
-
-                    // Run inference
-                    var inputs = new List<NamedOnnxValue>
+                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    ms.Position = 0;
+                    using (var mat = Mat.FromImageData(ms.ToArray()))
                     {
-                        NamedOnnxValue.CreateFromTensor("images", inputTensor)
-                    };
+                        // Preprocess image
+                        var inputTensor = PreprocessImage(mat);
 
-                    using (var outputs = _session.Run(inputs))
-                    {
-                        // Parse outputs
-                        results = ParseDetectionOutput(outputs, confidenceThreshold);
+                        // Run inference
+                        var inputs = new List<NamedOnnxValue>
+                        {
+                            NamedOnnxValue.CreateFromTensor("images", inputTensor)
+                        };
+
+                        using (var outputs = _session.Run(inputs))
+                        {
+                            // Parse outputs
+                            results = ParseDetectionOutput(outputs, confidenceThreshold);
+                        }
                     }
                 }
 

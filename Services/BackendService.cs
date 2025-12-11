@@ -1,5 +1,7 @@
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using Serilog;
 
 namespace ForgeMacro.Services
@@ -52,7 +54,7 @@ namespace ForgeMacro.Services
                 var response = await _httpClient.GetAsync("/api/macro/config");
                 response.EnsureSuccessStatusCode();
 
-                var config = await response.Content.ReadAsAsync<MacroConfig>();
+                var config = await response.Content.ReadFromJsonAsync<MacroConfig>() ?? new MacroConfig();
                 Log.Information("Retrieved macro config from backend");
                 return config;
             }

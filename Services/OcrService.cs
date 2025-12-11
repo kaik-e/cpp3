@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.IO;
 using Tesseract;
 using Serilog;
 
@@ -43,9 +44,16 @@ namespace ForgeMacro.Services
                 if (_engine == null)
                     throw new InvalidOperationException("OCR engine not initialized");
 
-                using (var page = _engine.Process(image))
+                // Convert Bitmap to Pix for Tesseract
+                using (var ms = new MemoryStream())
                 {
-                    return page.GetText();
+                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    ms.Position = 0;
+                    using (var pix = Pix.LoadFromMemory(ms.ToArray()))
+                    using (var page = _engine.Process(pix))
+                    {
+                        return page.GetText();
+                    }
                 }
             }
             catch (Exception ex)
