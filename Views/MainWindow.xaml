@@ -1,0 +1,105 @@
+<Window x:Class="ForgeMacro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ForgeMacro - AI Mining Automation" 
+        Width="1200" 
+        Height="800"
+        Background="{StaticResource SecondaryBrush}"
+        Foreground="{StaticResource TextPrimaryBrush}"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Assets/icon.ico"
+        FontFamily="{StaticResource FontFamily}">
+    
+    <Grid>
+        <!-- Main Layout -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar Navigation -->
+        <Border Grid.Column="0" Background="{StaticResource PrimaryBrush}" BorderThickness="0,0,1,0" BorderBrush="{StaticResource BorderBrush}">
+            <StackPanel Padding="20" VerticalAlignment="Top">
+                <!-- Logo/Title -->
+                <TextBlock Text="⛏️ ForgeMacro" FontSize="20" FontWeight="Bold" Margin="0,0,0,30" Foreground="{StaticResource AccentBrush}" />
+
+                <!-- Navigation Buttons -->
+                <StackPanel Spacing="10">
+                    <Button Content="🏠 Dashboard" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="NavigateToDashboard"
+                            Tag="Dashboard" />
+                    
+                    <Button Content="⚙️ Settings" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="NavigateToSettings"
+                            Tag="Settings" />
+                    
+                    <Button Content="🤖 Detection" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="NavigateToDetection"
+                            Tag="Detection" />
+                    
+                    <Button Content="📊 Statistics" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="NavigateToStatistics"
+                            Tag="Statistics" />
+                    
+                    <Button Content="📝 Logs" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="NavigateToLogs"
+                            Tag="Logs" />
+                </StackPanel>
+
+                <!-- Spacer -->
+                <Border Height="1" Background="{StaticResource BorderBrush}" Margin="0,30" />
+
+                <!-- Status Section -->
+                <TextBlock Text="Status" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10" />
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Ellipse Width="10" Height="10" Fill="{StaticResource WarningColor}" />
+                        <TextBlock Text="Idle" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" />
+                    </StackPanel>
+                    <TextBlock Text="Ready to start" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11" TextWrapping="Wrap" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Top Bar -->
+            <Border Grid.Row="0" Background="{StaticResource PrimaryBrush}" BorderThickness="0,0,0,1" BorderBrush="{StaticResource BorderBrush}">
+                <Grid Padding="30,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="PageTitle" Text="Dashboard" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="15" VerticalAlignment="Center">
+                        <Button Content="▶️ Start" 
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Click="StartMacro"
+                                Padding="20,8" />
+                        
+                        <Button Content="⏹️ Stop" 
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Click="StopMacro"
+                                Padding="20,8"
+                                Background="{StaticResource DangerColor}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Content Frame -->
+            <Frame x:Name="ContentFrame" Grid.Row="1" NavigationUIVisibility="Hidden" />
+        </Grid>
+    </Grid>
+</Window>

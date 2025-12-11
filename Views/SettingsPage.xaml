@@ -1,0 +1,99 @@
+<Page x:Class="ForgeMacro.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Settings"
+      Background="{StaticResource SecondaryBrush}"
+      Foreground="{StaticResource TextPrimaryBrush}">
+    
+    <ScrollViewer>
+        <Grid Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Model Settings -->
+            <Border Grid.Row="0" Background="{StaticResource PrimaryBrush}" 
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" 
+                    CornerRadius="12" Padding="20" Margin="0,0,0,20">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="🤖 Model Settings" FontSize="14" FontWeight="Bold" />
+                    
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Model Path" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBox Style="{StaticResource ModernTextBoxStyle}" Text="models/yolo_ore_detector.onnx" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Ore Detection Confidence" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <Slider Style="{StaticResource ModernSliderStyle}" Minimum="0" Maximum="1" Value="0.6" />
+                        <TextBlock Text="0.60" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Rock Detection Confidence" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <Slider Style="{StaticResource ModernSliderStyle}" Minimum="0" Maximum="1" Value="0.6" />
+                        <TextBlock Text="0.60" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Automation Settings -->
+            <Border Grid.Row="1" Background="{StaticResource PrimaryBrush}" 
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" 
+                    CornerRadius="12" Padding="20" Margin="0,0,0,20">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="⚙️ Automation Settings" FontSize="14" FontWeight="Bold" />
+                    
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Screen Capture Interval (ms)" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <Slider Style="{StaticResource ModernSliderStyle}" Minimum="50" Maximum="500" Value="100" />
+                        <TextBlock Text="100ms" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <CheckBox IsChecked="True" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="Enable OCR for ore names" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <CheckBox IsChecked="True" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="Enable Auto-Mining" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <CheckBox IsChecked="False" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="Enable GPU Acceleration" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Backend Settings -->
+            <Border Grid.Row="2" Background="{StaticResource PrimaryBrush}" 
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" 
+                    CornerRadius="12" Padding="20">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="🌐 Backend Settings" FontSize="14" FontWeight="Bold" />
+                    
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Backend URL" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBox Style="{StaticResource ModernTextBoxStyle}" Text="http://localhost:5000" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="API Key" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBox Style="{StaticResource ModernTextBoxStyle}" Text="••••••••••••••••" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <CheckBox IsChecked="True" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="Upload statistics to backend" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <Button Content="💾 Save Settings" Style="{StaticResource PrimaryButtonStyle}" Margin="0,10,0,0" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>
