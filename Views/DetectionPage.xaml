@@ -33,7 +33,7 @@
             <StackPanel>
                 <TextBlock Text="📊 Detection Results" FontSize="14" FontWeight="Bold" />
                 
-                <TextBlock Text="No detections yet. Click 'Capture & Analyze' to start." 
+                <TextBlock Text="No detections yet. Click 'Capture &amp; Analyze' to start." 
                            Foreground="{StaticResource TextSecondaryBrush}" 
                            TextWrapping="Wrap" />
 
